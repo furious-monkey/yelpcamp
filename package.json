@@ -1,0 +1,19 @@
+{
+  "name": "yelpcamp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ezhupa99/repo.git"
+  },
+  "author": "EZH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ezhupa99/repo/issues"
+  },
+  "homepage": "https://github.com/ezhupa99/repo#readme"
+}
