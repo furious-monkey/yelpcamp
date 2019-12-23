@@ -1,36 +1,41 @@
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+var express = require('express'),
+    app = express(),
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose');
 // <%- include("partials/header") %>
+mongoose.connect('mongodb://localhost/yelp_camp', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => console.log('DB Connected!'))
+    .catch(err => {
+        console.log(`DB Connection Error: ${err.message}`);
+    });
 
 app.use(bodyParser.urlencoded({ extende: true }));
 app.set('view engine', 'ejs');
 
-var campgrounds = [
-    { name: "Salmon Creek", image: "https://cdn.pixabay.com/photo/2016/01/19/16/48/teepee-1149402_960_720.jpg" },
-    { name: "Granite Hill", image: "https://cdn.pixabay.com/photo/2018/12/24/22/19/camping-3893587_960_720.jpg" },
-    { name: "Montain Goat's Rest", image: "https://cdn.pixabay.com/photo/2017/08/04/20/04/camping-2581242_960_720.jpg" },
-    { name: "Salmon Creek", image: "https://cdn.pixabay.com/photo/2016/01/19/16/48/teepee-1149402_960_720.jpg" },
-    { name: "Granite Hill", image: "https://cdn.pixabay.com/photo/2018/12/24/22/19/camping-3893587_960_720.jpg" },
-    { name: "Montain Goat's Rest", image: "https://cdn.pixabay.com/photo/2017/08/04/20/04/camping-2581242_960_720.jpg" },
-    { name: "Salmon Creek", image: "https://cdn.pixabay.com/photo/2016/01/19/16/48/teepee-1149402_960_720.jpg" },
-    { name: "Granite Hill", image: "https://cdn.pixabay.com/photo/2018/12/24/22/19/camping-3893587_960_720.jpg" },
-    { name: "Montain Goat's Rest", image: "https://cdn.pixabay.com/photo/2017/08/04/20/04/camping-2581242_960_720.jpg" }
-]
+var campgroundSchema = new mongoose.Schema({
+    name: String,
+    image: String
+});
+
+var Campground = mongoose.model("Campground", campgroundSchema);
 
 app.get("/", function (req, res) {
     res.render("landing");
 });
 
 app.get("/campgrounds", function (req, res) {
-    res.render("campgrounds", { camps: campgrounds })
+    Campground.find({}, (err, camps) => {
+        err ? console.log(err) : res.render("campgrounds", { camps: camps })
+    })
 });
 
 app.post("/campgrounds", function (req, res) {
     var name = req.body.name;
     var img = req.body.image;
     var newcamp = { name: name, image: img }
-    campgrounds.push(newcamp);
+    Campground.create(newcamp, (err, camp) => {
+        err ? console.log(err) : console.log(camp);
+    });
     res.redirect("/campgrounds");
 })
 
