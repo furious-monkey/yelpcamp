@@ -3,13 +3,14 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose');
 // <%- include("partials/header") %>
-mongoose.connect('mongodb://localhost/yelp_camp', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/yelp_camp:27017', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('DB Connected!'))
     .catch(err => {
         console.log(`DB Connection Error: ${err.message}`);
     });
 
-app.use(bodyParser.urlencoded({ extende: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.set('view engine', 'ejs');
 
 var campgroundSchema = new mongoose.Schema({
@@ -41,6 +42,10 @@ app.post("/campgrounds", function (req, res) {
 
 app.get("/campgrounds/new", function (req, res) {
     res.render("new.ejs")
+});
+
+app.get("/campgrounds/:id", function (req, res) {
+    res.send("omecabonemir")
 });
 
 app.listen(process.env.PORT || 3000, process.env.IP || '127.0.0.1', function () {
