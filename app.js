@@ -2,7 +2,7 @@ var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose');
-// <%- include("partials/header") %>
+
 mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('DB Connected!'))
     .catch(err => {
