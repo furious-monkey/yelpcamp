@@ -22,7 +22,9 @@
             <img src="<%= camp.image %>" class="card-img-top">
             <div class="cardbody">
                 <h5 class="card-title"><%= camp.name %></h5>
-                <a href="#" class="btn btn-primary btn-sm">Hello</a>
+                <p>
+                    <a href="/campgrounds/<%= camp._id %>" class="btn btn-primary btn-sm">More Info</a>
+                </p>
             </div>
         </div>
         <% }) %>
