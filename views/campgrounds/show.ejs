@@ -1,17 +1,42 @@
 <%- include("../partials/header") %>
-
-<h1>this is a show route</h1>
-<p><%= camps.name %></p>
-<img src="<%= camps.image %>">
-<p><%= camps.description %></p>
-<p>
-    <a class="btn btn-success" href="/campgrounds/<%= camps._id %>/comments/new">Add new comment</a>
-</p>
-
-<% camps.comments.forEach((comment)=>{ %>
-<p>
-    <strong> <%= comment.author %> </strong> - <%= comment.text %>
-</p>
-<% }) %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Yelp Camp</p>
+            <div class="list-group">
+                <li class="list-group-item active">Info 1</li>
+                <li class="list-group-item">Info 2</li>
+                <li class="list-group-item">Info 3</li>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <img class="img-fluid" src="<%= camps.image %>">
+                <div class="card-body">
+                    <h4 class="float-md-right">$9.00/night</h4>
+                    <h4>
+                        <a href=""><%= camps.name %></a>
+                    </h4>
+                    <p class="card-text"><%= camps.description %></p>
+                </div>
+            </div>
+            <div class="card my-3">
+                <div class="text-right m-0 pt-3 px-3">
+                    <a class="btn btn-success" href="/campgrounds/<%= camps._id %>/comments/new">Add new comment</a>
+                </div>
+                <hr>
+                <% camps.comments.forEach((comment)=>{ %>
+                <div class="row m-0 p-2">
+                    <div class="col-md-12">
+                        <strong><%= comment.author %></strong>
+                        <span class="float-md-right">10 Days Ago</span>
+                        <p><%= comment.text %></p>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
 
 <%- include("../partials/footer") %>
