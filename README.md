@@ -1,1 +1,1 @@
-Created models in externam files like 'models/campgrund & models/comment'
+Created models in external files like 'models/campgrund & models/comment'
