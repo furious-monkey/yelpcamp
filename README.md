@@ -1,1 +1,2 @@
-Created models in external files like 'models/campgrund & models/comment'
+Nested Routes.
+added new custom comments.
