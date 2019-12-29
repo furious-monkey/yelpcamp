@@ -1,8 +1,11 @@
 var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    Campground = require('./models/campground'),
+    seedDB = require('./seeds');
 
+seedDB();
 mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('DB Connected!'))
     .catch(err => {
@@ -10,16 +13,7 @@ mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true,
     });
 
 app.use(bodyParser.urlencoded({ extended: true }));
-
 app.set('view engine', 'ejs');
-
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-});
-
-var Campground = mongoose.model("Campground", campgroundSchema);
 
 app.get("/", function (req, res) {
     res.render("landing");
@@ -47,7 +41,7 @@ app.get("/campgrounds/new", function (req, res) {
 });
 
 app.get("/campgrounds/:id", function (req, res) {
-    Campground.findById(req.params.id, (err, ret) => {
+    Campground.findById(req.params.id).populate('comments').exec((err, ret) => {
         err ? console.log(err) : res.render('show', { camps: ret });
     });
 });
