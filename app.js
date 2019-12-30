@@ -95,7 +95,7 @@ app.post("/campgrounds/:id/comments", function (req, res) {
     });
 });
 //=======================================================
-//Register form
+//Register ROUTES
 app.get("/register", function (req, res) {
     res.render('register');
 });
@@ -112,6 +112,16 @@ app.post("/register", function (req, res) {
             });
         }
     });
+});
+//Login ROUTES
+app.get("/login", function (req, res) {
+    res.render('login')
+});
+
+app.post("/login", passport.authenticate('local', {
+    successRedirect: '/campgrounds',
+    failureRedirect: '/login'
+}), function (req, res) {
 });
 
 app.listen(process.env.PORT || 3000, process.env.IP || '127.0.0.1', function () {
