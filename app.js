@@ -65,7 +65,7 @@ app.get("/campgrounds/:id", function (req, res) {
 });
 
 //=======================================================
-app.get("/campgrounds/:id/comments/new", function (req, res) {
+app.get("/campgrounds/:id/comments/new", isLoggedIn, function (req, res) {
     Campground.findById(req.params.id, (err, campground) => {
         if (err) {
             console.log(err);
@@ -76,7 +76,7 @@ app.get("/campgrounds/:id/comments/new", function (req, res) {
     });
 });
 
-app.post("/campgrounds/:id/comments", function (req, res) {
+app.post("/campgrounds/:id/comments", isLoggedIn, function (req, res) {
     Campground.findById(req.params.id, (err, campground) => {
         if (err) {
             console.log(err);
@@ -123,6 +123,19 @@ app.post("/login", passport.authenticate('local', {
     failureRedirect: '/login'
 }), function (req, res) {
 });
+
+//Logout Route
+app.get("/logout", function (req, res) {
+    req.logOut();
+    res.redirect('/campgrounds');
+});
+
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
+        return next();
+    }
+    res.redirect('/login');
+}
 
 app.listen(process.env.PORT || 3000, process.env.IP || '127.0.0.1', function () {
     console.log("Filluam djema!");
