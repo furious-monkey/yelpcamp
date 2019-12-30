@@ -7,9 +7,7 @@ var express = require('express'),
     Campground = require('./models/campground'),
     Comment = require('./models/comment'),
     User = require('./models/user');
-// seedDB = require('./seeds');
-
-// seedDB();
+    
 mongoose.connect('mongodb://localhost:27017/yelp_camp', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('DB Connected!'))
     .catch(err => {
