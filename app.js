@@ -4,8 +4,8 @@ var express = require("express"),
   mongoose = require("mongoose"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
-  Campground = require("./models/campground"),
-  Comment = require("./models/comment"),
+  // Campground = require("./models/campground"),
+  // Comment = require("./models/comment"),
   User = require("./models/user");
 
 var campgroundRoutes = require("./routes/campgrounds");
@@ -46,8 +46,8 @@ app.use((req, res, next) => {
 });
 
 app.use(indexRoutes);
-app.use('/campgrounds', campgroundRoutes);
-app.use('/campgrounds/:id/comments', commentRoutes);
+app.use("/campgrounds", campgroundRoutes);
+app.use("/campgrounds/:id/comments", commentRoutes);
 
 app.listen(process.env.PORT || 3000, process.env.IP || "127.0.0.1", function() {
   console.log("Filluam djema!");
