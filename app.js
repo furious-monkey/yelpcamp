@@ -46,8 +46,8 @@ app.use((req, res, next) => {
 });
 
 app.use(indexRoutes);
-app.use(campgroundRoutes);
-app.use(commentRoutes);
+app.use('/campgrounds', campgroundRoutes);
+app.use('/campgrounds/:id/comments', commentRoutes);
 
 app.listen(process.env.PORT || 3000, process.env.IP || "127.0.0.1", function() {
   console.log("Filluam djema!");
