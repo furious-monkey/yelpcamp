@@ -21,6 +21,19 @@
           <p>
             <em>Submited By: <%= camps.author.username %></em>
           </p>
+          <a
+            class="btn btn-warning btn-sm"
+            href="/campgrounds/<%= camps._id %>/edit"
+          >
+            Edit
+          </a>
+          <form
+            class="d-inline"
+            action="/campgrounds/<%= camps._id %>?_method=DELETE"
+            method="POST"
+          >
+            <button class="btn btn-sm btn-danger">Delete</button>
+          </form>
         </div>
       </div>
       <div class="card my-3">
