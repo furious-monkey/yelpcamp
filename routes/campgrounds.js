@@ -46,17 +46,13 @@ router.get("/:id/edit", function(req, res) {
 });
 
 router.put("/:id", (req, res) => {
-  Campground.findOneAndUpdate(
-    req.params.id,
-    req.body.campground,
-    (err, camp) => {
-      if (err) {
-        res.redirect("/campgrounds");
-      } else {
-        res.redirect(`/campgrounds/${req.params.id}`);
-      }
+  Campground.findOneAndUpdate(req.params.id, req.body.campground, err => {
+    if (err) {
+      res.redirect("/campgrounds");
+    } else {
+      res.redirect(`/campgrounds/${req.params.id}`);
     }
-  );
+  });
 });
 
 router.delete("/:id", (req, res) => {
