@@ -52,7 +52,7 @@ router.put("/:commentID", (req, res) => {
   Comment.findOneAndUpdate(
     { _id: req.params.commentID },
     req.body.comment,
-    (err) => {
+    err => {
       if (err) {
         res.redirect("back");
       } else {
@@ -60,6 +60,16 @@ router.put("/:commentID", (req, res) => {
       }
     }
   );
+});
+
+router.delete("/:commentID", (req, res) => {
+  Comment.findOneAndDelete({ _id: req.params.commentID }, err => {
+    if (err) {
+      res.redirect("back");
+    } else {
+      res.redirect("/campgrounds/" + req.params.id);
+    }
+  });
 });
 
 function isLoggedIn(req, res, next) {
