@@ -3,10 +3,11 @@
 <div class="container">
     <header class="jumbotron">
         <div class="container">
-            <h1>Welocome to YelpCamp!</h1>
+            <h1>Welcome to YelpCamp!</h1>
             <p>View our hand-picked campgrounds from all over the world.</p>
             <p>
-                <a href="/campgrounds/new" class="btn btn-lg btn-primary">Add new Campgrounds :)</a>
+                <a href="/campgrounds/new"
+                   class="btn btn-lg btn-primary">Add new Campgrounds :)</a>
             </p>
         </div>
     </header>
@@ -19,11 +20,13 @@
         <% camps.forEach(camp => { %>
         <div class="col-md-3 col-sm-6">
             <div class="card"></div>
-            <img src="<%= camp.image %>" class="card-img-top">
+            <img src="<%= camp.image %>"
+                 class="card-img-top">
             <div class="cardbody">
                 <h5 class="card-title"><%= camp.name %></h5>
                 <p>
-                    <a href="/campgrounds/<%= camp._id %>" class="btn btn-primary btn-sm">More Info</a>
+                    <a href="/campgrounds/<%= camp._id %>"
+                       class="btn btn-primary btn-sm">More Info</a>
                 </p>
             </div>
         </div>
