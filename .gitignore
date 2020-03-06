@@ -1,14 +1,9 @@
-
-# Created by https://www.gitignore.io/api/node,code,windows,visualstudiocode
-# Edit at https://www.gitignore.io/?templates=node,code,windows,visualstudiocode
-
 ### Code ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-
 
 ### Node ###
 # Logs
@@ -117,11 +112,20 @@ tmp/
 temp/
 
 ### VisualStudioCode ###
+<<<<<<< HEAD
+=======
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+>>>>>>> 01a16f26f612b4eaafeface1585fb8d37dd084f1
 
 ### VisualStudioCode Patch ###
 # Ignore all local history of files
 .history
 
+<<<<<<< HEAD
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
@@ -149,3 +153,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,code,windows,visualstudiocode
+=======
+# End of https://www.gitignore.io/api/node,visualstudiocode
+>>>>>>> 01a16f26f612b4eaafeface1585fb8d37dd084f1
